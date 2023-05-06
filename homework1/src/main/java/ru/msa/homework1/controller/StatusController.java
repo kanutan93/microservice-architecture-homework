@@ -8,7 +8,7 @@ import ru.msa.homework1.model.StatusResponse;
 @RestController
 public class StatusController {
 
-  @GetMapping
+  @GetMapping("/health")
   public ResponseEntity<StatusResponse> getStatus() {
     return ResponseEntity.ok(new StatusResponse());
   }
