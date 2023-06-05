@@ -1,0 +1,31 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: msa-homework-deployment
+  labels:
+    app: msa-homework
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: msa-homework
+  template:
+    metadata:
+      labels:
+        app: msa-homework
+    spec:
+      containers:
+        - name: msa-homework
+          image: msa-homework:1.0.0
+          ports:
+            - containerPort: 8000
+          readinessProbe:
+            tcpSocket:
+              port: 8000
+            initialDelaySeconds: 5
+            periodSeconds: 10
+          livenessProbe:
+            tcpSocket:
+              port: 8000
+            initialDelaySeconds: 15
+            periodSeconds: 20
