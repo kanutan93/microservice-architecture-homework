@@ -26,13 +26,15 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "arch.homework/health",
+					"raw": "arch.homework/otusapp/DmitryMorozov/*",
 					"host": [
 						"arch",
 						"homework"
 					],
 					"path": [
-						"health"
+						"otusapp",
+						"DmitryMorozov",
+						"*"
 					]
 				}
 			},
