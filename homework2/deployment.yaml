@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
         - name: msa-homework
-          image: msa-homework:1.0.0
+          image: kanutan93/msa-homework:1.0.0
           ports:
             - containerPort: 8000
           readinessProbe:
