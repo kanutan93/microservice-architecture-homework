@@ -2,10 +2,9 @@ package ru.msa.homework3.service.impl;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import ru.msa.homework3.exception.Homework3Error;
+
 import ru.msa.homework3.exception.Homework3Exception;
 import ru.msa.homework3.mapper.UserMapper;
 import ru.msa.homework3.model.dao.UserEntity;
@@ -14,8 +13,6 @@ import ru.msa.homework3.model.dto.request.UpdateUserRequestDto;
 import ru.msa.homework3.model.dto.response.UserResponse;
 import ru.msa.homework3.repository.UserRepository;
 import ru.msa.homework3.service.UserService;
-
-import java.util.Optional;
 
 import static org.springframework.http.HttpStatus.*;
 import static ru.msa.homework3.exception.Homework3Error.*;
@@ -33,16 +30,13 @@ public class UserServiceImpl implements UserService {
   public UserResponse getUser(Long id) {
     log.info("Trying to get user by id: {}", id);
 
-    Optional<UserEntity> userEntityOptional = userRepository.findById(id);
-    if (userEntityOptional.isPresent()) {
-      UserEntity userEntity = userEntityOptional.get();
-      UserResponse userResponse = userMapper.toUserResponse(userEntity);
-      log.info("Successfully received User: {} by id: {}", userResponse, id);
+    UserEntity userEntity = userRepository
+        .findById(id)
+        .orElseThrow(() -> new Homework3Exception(USER_NOT_FOUND, NOT_FOUND));
 
-      return userResponse;
-    } else {
-      throw new Homework3Exception(USER_NOT_FOUND, NOT_FOUND);
-    }
+    UserResponse userResponse = userMapper.toUserResponse(userEntity);
+    log.info("User: {} received succesfully", userResponse);
+    return userResponse;
   }
 
   @Override
@@ -65,7 +59,7 @@ public class UserServiceImpl implements UserService {
 
     userRepository.deleteById(id);
 
-    log.info("Successfully deleted UserEntity with id: {}", id);
+    log.info("Successfully deleted user by id: {}", id);
   }
 
   @Override
@@ -76,6 +70,6 @@ public class UserServiceImpl implements UserService {
     UserEntity userEntity = userMapper.toUserEntity(id, updateUserRequestDto);
     userRepository.save(userEntity);
 
-    log.info("Successfully updated UserEntity with id: {}", id);
+    log.info("Successfully updated UserEntity: {}", userEntity);
   }
 }
