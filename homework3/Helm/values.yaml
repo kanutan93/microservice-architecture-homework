@@ -1,0 +1,33 @@
+app:
+  name: homework3
+  host: arch.homework
+  namespace: default
+  maxSurge: 1
+  maxUnavailable: 1
+  replicaCount: 2
+  image:
+    repository: "kanutan93/msa-homework"
+    tag: "1.0.1"
+    pullPolicy: Always
+  resources:
+    limits:
+      cpu: 200m
+      memory: 512Mi
+    requests:
+      cpu: 200m
+      memory: 512Mi
+  service:
+    port: 8080
+    targetPort: 8080
+  secret:
+    - name: DB_URL
+      value: "postgresql://postgres:password@msa-homework-db:5432/homework3"
+    - name: DB_USERNAME
+      value: "postgres"
+    - name: DB_PASSWORD
+      value: "password"
+
+
+
+
+
