@@ -11,10 +11,10 @@ app:
     pullPolicy: Always
   resources:
     limits:
-      cpu: 200m
+      cpu: 400m
       memory: 512Mi
     requests:
-      cpu: 200m
+      cpu: 400m
       memory: 512Mi
   service:
     port: 8080
