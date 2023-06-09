@@ -19,13 +19,6 @@ app:
   service:
     port: 8080
     targetPort: 8080
-  secret:
-    - name: DB_URL
-      value: "postgresql://postgres:password@msa-homework-db:5432/homework3"
-    - name: DB_USERNAME
-      value: "postgres"
-    - name: DB_PASSWORD
-      value: "password"
 
 
 
