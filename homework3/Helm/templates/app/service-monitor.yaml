@@ -1,0 +1,17 @@
+apiVersion: monitoring.coreos.com/v1
+kind: ServiceMonitor
+metadata:
+  name: {{ .Values.app.name }}-service-monitor
+  labels:
+    app: {{ .Values.app.name }}
+    release: prometheus
+spec:
+  selector:
+    matchLabels:
+      app: {{ .Values.app.name }}
+  namespaceSelector:
+    any: true
+  endpoints:
+    - port: {{ .Values.app.service.name }}
+      interval: 10s
+      path: "/actuator/prometheus"
