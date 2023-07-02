@@ -7,7 +7,7 @@ app:
   replicaCount: 2
   image:
     repository: "kanutan93/msa-homework"
-    tag: "1.4.3"
+    tag: "1.4.4"
     pullPolicy: Always
   resources:
     limits:

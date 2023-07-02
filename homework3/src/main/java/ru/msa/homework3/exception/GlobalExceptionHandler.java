@@ -15,9 +15,7 @@ import static org.springframework.http.HttpStatus.INTERNAL_SERVER_ERROR;
 @RestControllerAdvice
 @RequiredArgsConstructor
 public class GlobalExceptionHandler {
-
-  private static final String ERROR_COUNTER = "homework3-error-counter";
-  private final ErrorRateCounter errorRateCounter;
+  private final ErrorRateGauge errorRateCounter;
 
   @ExceptionHandler(Homework3Exception.class)
   public ErrorResponse handle(HttpServletRequest request, HttpServletResponse response, Homework3Exception exception) {
