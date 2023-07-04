@@ -16,3 +16,5 @@ kubectl expose service prometheus-grafana --type=NodePort --target-port=3000 --n
 
 kubectl expose service prometheus-kube-prometheus-prometheus --type=NodePort --target-port=9090 --
 name=prometheus-kube-prometheus-prometheus-node-port
+
+kubectl expose service prometheus-kube-prometheus-alertmanager --type=NodePort --target-port=9093 --name=prometheus-kube-prometheus-alertmanager-node-port
